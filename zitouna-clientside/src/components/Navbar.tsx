@@ -13,7 +13,7 @@ export function Navbar({ isAuthenticated, onLogout }: { isAuthenticated: boolean
             </ul>
             <div>
                 {isAuthenticated ? (
-                    <button onClick={onLogout} className="px-4 py-2 bg-red-500 text-white rounded-md">Logout</button>
+                    <button onClick={onLogout} style={{ backgroundColor: "#922D50" }}  className="px-4 py-2 text-white rounded-md">Logout</button>
                 ) : (
                         <Link to="/login" className="px-4 py-2 bg-black text-white rounded-md mr-2">Login</Link>
                 )}

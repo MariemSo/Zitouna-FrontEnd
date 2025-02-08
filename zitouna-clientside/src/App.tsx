@@ -7,6 +7,8 @@ import { AddRecipe } from "./pages/AddRecipe";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import {useState} from "react";
+import {EditRecipe} from "./pages/EditRecipe.tsx";
+import {Recipes} from "./pages/Recipes.tsx";
 
 export default function App(): JSX.Element {
     const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
@@ -22,8 +24,11 @@ export default function App(): JSX.Element {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
         <Route path="/register" element={<Register />} />
+        <Route path="/recipes" element={<Recipes />} />
         <Route path="/recipe/:id" element={<RecipeDetail />} />
         <Route path="/add-recipe" element={<AddRecipe />} />
+      <Route path="/edit-recipe/:id" element={<EditRecipe />} />
+
       </Routes>
       <Footer />
     </Router>
