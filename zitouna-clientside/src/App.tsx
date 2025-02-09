@@ -17,20 +17,25 @@ export default function App(): JSX.Element {
         localStorage.removeItem('token');
         setIsAuthenticated(false);
     };
-  return (
-    <Router>
-      <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/recipes" element={<Recipes />} />
-        <Route path="/recipe/:id" element={<RecipeDetail />} />
-        <Route path="/add-recipe" element={<AddRecipe />} />
-      <Route path="/edit-recipe/:id" element={<EditRecipe />} />
 
-      </Routes>
-      <Footer />
-    </Router>
-  );
+    return (
+        <Router>
+            <div className="flex flex-col min-h-screen">
+                <Navbar isAuthenticated={isAuthenticated} onLogout={handleLogout} />
+                <div className="flex-grow">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated}/>} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/recipes" element={<Recipes />} />
+                        <Route path="/recipe/:id" element={<RecipeDetail />} />
+                        <Route path="/add-recipe" element={<AddRecipe />} />
+                        <Route path="/edit-recipe/:id" element={<EditRecipe />} />
+                    </Routes>
+                </div>
+                <Footer />
+            </div>
+        </Router>
+    );
 }
+

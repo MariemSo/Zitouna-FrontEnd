@@ -57,26 +57,43 @@ export function RecipeDetail(): JSX.Element {
 
     if (loading) return <div className="p-6 text-center text-xl">Loading recipe...</div>;
     if (error) return <div className="p-6 text-center text-xl">{error}</div>;
+
     const handleDeleteSuccess = () => {
         navigate("/");
     };
+
     return (
         <div className="p-6 max-w-4xl mx-auto">
+
             <h1 className="text-3xl font-bold mb-4">{recipe.name}</h1>
-            <img
-                src={recipe.coverImage}
-                alt={recipe.name}
-                className="w-full h-64 object-cover rounded-lg shadow-md mb-4"
-            />
-            <p className="text-lg font-semibold">
-                Time: {recipe.prepTime} | Category: {recipe.category.name}
-            </p>
-            <h2 className="text-2xl font-bold mt-6">Ingredients</h2>
-            <ul className="list-disc list-inside text-gray-700 mt-2">
-                {recipe.ingredients.map((ingredient: { ingredient: { name: string }; quantity: string; unit: string }, index: number) => (
-                    <li key={index}>{`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredient.name}`}</li>
-                ))}
-            </ul>
+            {/* Flex container for image and ingredients */}
+            <div className="flex flex-col md:flex-row gap-6 mb-6">
+                {/* Image */}
+                <div className="flex-1">
+                    <img
+                        src={recipe.coverImage}
+                        alt={recipe.name}
+                        className="w-full h-64 object-cover rounded-lg shadow-md"
+                    />
+                </div>
+
+                {/* Ingredients */}
+                <div className="flex-1">
+                    <h2 className="text-2xl font-bold mb-4">Ingredients</h2>
+                    <ul className="list-disc list-inside text-gray-700">
+                        {recipe.ingredients.map(
+                            (
+                                ingredient: { ingredient: { name: string }; quantity: string; unit: string },
+                                index: number
+                            ) => (
+                                <li key={index}>{`${ingredient.quantity} ${ingredient.unit} of ${ingredient.ingredient.name}`}</li>
+                            )
+                        )}
+                    </ul>
+                </div>
+            </div>
+
+            {/* Steps */}
             <h2 className="text-2xl font-bold mt-6">Steps</h2>
             <ol className="list-decimal list-inside text-gray-700 mt-2">
                 {recipe.steps.map((step: { stepNumber: number; description: string }, index: number) => (
@@ -86,21 +103,21 @@ export function RecipeDetail(): JSX.Element {
 
             {/* Show edit button if current user owns the recipe */}
             {currentUser && recipe.user.id === currentUser.id && (
-               <div className="flex space-x-4 mt-4">
-
-                <button
-                    onClick={() => navigate(`/edit-recipe/${recipe.id}`)}
-                    className="mt-4 p-2 bg-blue-500 text-white rounded"
-                >
-                    Edit Recipe
-                </button>
-                <DeleteButton
-                    recipeId={recipe.id}
-                    recipeOwnerId={recipe.user.id}
-                    currentUser={currentUser}
-                    onDeleteSuccess={handleDeleteSuccess}
-                />
-               </div>
+                <div className="flex space-x-4 mt-4">
+                    <button
+                        onClick={() => navigate(`/edit-recipe/${recipe.id}`)}
+                        style={{ backgroundColor: "#6DAEDB" }}
+                        className="mt-4 p-2 text-white rounded"
+                    >
+                        Edit Recipe
+                    </button>
+                    <DeleteButton
+                        recipeId={recipe.id}
+                        recipeOwnerId={recipe.user.id}
+                        currentUser={currentUser}
+                        onDeleteSuccess={handleDeleteSuccess}
+                    />
+                </div>
             )}
         </div>
     );

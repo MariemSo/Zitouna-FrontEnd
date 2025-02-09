@@ -67,7 +67,7 @@ export const IngredientInput: React.FC<IngredientInputProps> = ({
 
             <select
                 className="p-2 border rounded w-1/3"
-                value={ingredient.unit||'grams'}
+                value={ingredient.unit??'grams'}
                 onChange={(e) => {
                     console.log(`Setting unit for ingredient ${index}:`, e.target.value);
                     onChange(index, 'unit', e.target.value)

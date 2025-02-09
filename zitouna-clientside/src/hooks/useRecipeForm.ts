@@ -8,7 +8,7 @@ export const useRecipeForm = () => {
     const [spiciness, setSpiciness] = useState(0);
     const [categoryId, setCategoryId] = useState('');
     const [categoryOptions, setCategoryOptions] = useState<{ id: number; name: string }[]>([]);
-    const [ingredients, setIngredients] = useState([{ quantity: '', unit: '', ingredientName: '' }]);
+    const [ingredients, setIngredients] = useState([{ quantity: '', unit: 'grams', ingredientName: '' }]);
     const [steps, setSteps] = useState(['']);
     const [ingredientOptions, setIngredientOptions] = useState<{ id: number; name: string }[]>([]);
     const [unitOptions] = useState(["grams", "milliliters", "cups", "tablespoons", "teaspoons", "pieces"]);

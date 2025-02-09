@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { RecipeCard } from "../components/RecipeCard"; // Adjust the import path as needed
 
 export function Home(): JSX.Element {
     const [recipes, setRecipes] = useState([]);
@@ -25,30 +26,46 @@ export function Home(): JSX.Element {
 
     return (
         <div className="p-6 max-w-6xl mx-auto">
-            <h1 className="font-poppins-light text-3xl  text-center mb-6">Zitouna Liouma</h1>
+            <h1 className="font-poppins-light text-3xl text-center mb-6">Zitouna Liouma</h1>
 
+            {/* Hero Section */}
             {heroRecipe && (
-                <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-lg text-center">
-                    <img src={heroRecipe.coverImage} alt={heroRecipe.name} className="w-full h-64 object-cover rounded-lg mb-4" />
-                    <h2 className="font-poppings-bold text-2xl">{heroRecipe.name}</h2>
-                    <p className="text-lg text-gray-700">Category: {heroRecipe.category.name} | Time: {heroRecipe.prepTime} min</p>
-                    <Link to={`/recipe/${heroRecipe.id}`} className="mt-4 inline-block px-4 py-2 bg-blue-500 text-white rounded">View Recipe</Link>
+                <div className="mb-8 p-6 bg-gray-100 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-6">
+                    <img
+                        src={heroRecipe.coverImage}
+                        alt={heroRecipe.name}
+                        className="w-full md:w-1/2 h-64 object-cover rounded-lg"
+                    />
+                    <div className="text-center md:text-left">
+                        <h2 className="font-poppings-bold text-2xl mb-2">{heroRecipe.name}</h2>
+                        <p className="text-lg text-gray-700 mb-4">
+                            Category: {heroRecipe.category.name} | Time: {heroRecipe.prepTime} min
+                        </p>
+                        <Link
+                            to={`/recipe/${heroRecipe.id}`}
+                            style={{ backgroundColor: "#6DAEDB" }}
+                            className="mt-4 inline-block px-4 py-2 text-white rounded hover:bg-[#5a9cc5] transition-colors duration-300"
+                        >
+                            View Recipe
+                        </Link>
+                    </div>
                 </div>
             )}
 
+            {/* Display Recipes Grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {displayRecipes.map((recipe) => (
-                    <div key={recipe.id} className="border rounded shadow-md p-4">
-                        <img src={recipe.coverImage} alt={recipe.name} className="h-32 w-full object-cover rounded mb-4" />
-                        <h3 className="text-lg font-bold">{recipe.name}</h3>
-                        <p className="text-sm mt-2">Category: {recipe.category.name} | Time: {recipe.prepTime} min</p>
-                        <Link to={`/recipe/${recipe.id}`} className="text-blue-500">Take me There</Link>
-                    </div>
+                    <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}
             </div>
 
             <div className="text-center mt-6">
-                <Link to="/recipes" className="px-4 py-2 bg-black text-white rounded">See More Recipes</Link>
+                <Link
+                    to="/recipes"
+                    className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800 transition-colors duration-300"
+                >
+                    See More Recipes
+                </Link>
             </div>
         </div>
     );
