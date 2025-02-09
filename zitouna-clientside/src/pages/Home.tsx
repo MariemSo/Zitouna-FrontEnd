@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { RecipeCard } from "../components/RecipeCard"; // Adjust the import path as needed
+import { RecipeCard } from "../components/RecipeCard";
 
 export function Home(): JSX.Element {
     const [recipes, setRecipes] = useState([]);

@@ -11,7 +11,6 @@ export function RecipeDetail(): JSX.Element {
     const [currentUser, setCurrentUser] = useState<any>(null);
 
     useEffect(() => {
-        // Fetch the logged-in user's info
         const fetchUser = async () => {
             const token = localStorage.getItem("token");
             if (!token) return;
@@ -43,7 +42,6 @@ export function RecipeDetail(): JSX.Element {
         fetchRecipe();
     }, [id]);
 
-    // Log the currentUser and recipe after they have been updated
     useEffect(() => {
         console.log("current user", currentUser);
     }, [currentUser]);
@@ -66,7 +64,6 @@ export function RecipeDetail(): JSX.Element {
         <div className="p-6 max-w-4xl mx-auto">
 
             <h1 className="text-3xl font-bold mb-4">{recipe.name}</h1>
-            {/* Flex container for image and ingredients */}
             <div className="flex flex-col md:flex-row gap-6 mb-6">
                 {/* Image */}
                 <div className="flex-1">

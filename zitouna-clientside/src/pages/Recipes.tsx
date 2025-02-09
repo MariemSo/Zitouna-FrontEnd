@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { Filters, SearchBar, SortButtons } from "../components/SearchBar";
-import { RecipeCard } from "../components/RecipeCard"; // Adjust the import path as needed
+import { RecipeCard } from "../components/RecipeCard";
 
 export function Recipes(): JSX.Element {
     const [recipes, setRecipes] = useState([]);

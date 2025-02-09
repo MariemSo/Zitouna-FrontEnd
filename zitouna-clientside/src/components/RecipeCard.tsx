@@ -8,7 +8,7 @@ interface Recipe {
         name: string;
     };
     prepTime: number;
-    spiciness?: number; // Optional, depending on your data
+    spiciness?: number;
 }
 
 interface RecipeCardProps {

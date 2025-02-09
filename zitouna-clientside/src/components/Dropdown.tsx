@@ -30,7 +30,7 @@ export const Dropdown: React.FC<DropdownProps> = ({ options, onSelect, onClose }
                     className="p-2 hover:bg-gray-200 cursor-pointer"
                     onClick={() => {
                         onSelect(ing.name);
-                        onClose(); // Close on selection
+                        onClose();
                     }}
                 >
                     {ing.name}

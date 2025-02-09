@@ -26,7 +26,6 @@ export function useDropdown(options: { id: number; name: string }[]) {
     };
 }
 
-// Helper function to get 5 random ingredients
 function getRandomIngredients(options: { id: number; name: string }[], count: number) {
     const shuffled = [...options].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
